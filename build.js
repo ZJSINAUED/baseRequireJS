@@ -17,5 +17,5 @@
 		Sprite : 'base/Sprite'
     },
     name: "main",
-    out: "main-built.js"
+    out: "main-built2.js"
 })
