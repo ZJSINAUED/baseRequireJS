@@ -107,5 +107,9 @@ define(function(){
 		document.body.appendChild(canvas);
 		exports.setProgress(0);
 	}
+	
+	exports.remove = function(){
+		document.body.removeChild(canvas);
+	}
 	return exports;
 })

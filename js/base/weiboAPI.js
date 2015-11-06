@@ -67,6 +67,7 @@ define(['sinaSSOController','jsonp'],function(sinaSSOController,jsonp){
 			});
 		});
 	}
+	exports.checkLogin = checkLogin;
 	exports.postWeibo = function(content, pid, callback) {
 		if (content == '') {
 			showMessage('«Î ‰»Îƒ⁄»›');
