@@ -10,9 +10,9 @@ define(function(){
 			defaultOptions = {
 				on:'http://zj.sinaimg.cn/zj_2015/summerholiday2015/images/music_on.png',
 				off:'http://zj.sinaimg.cn/zj_2015/summerholiday2015/images/music_off.png',
-				w:45,
-				h:45,
-				size:23
+				w:90,
+				h:90,
+				size:46
 			}
 		params = params || {};
 		pos = pos || {};
