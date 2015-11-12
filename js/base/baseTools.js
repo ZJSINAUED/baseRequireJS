@@ -58,10 +58,10 @@ exports.removeClass = function(obj, cls) {
  **/
 exports.isMobile = function(){
 	var ua = navigator.userAgent,
-		isAndroid = return ua.match(/Android/i) ? true : false,
-		isBlackBerry = return ua.match(/BlackBerry/i) ? true : false,
-		isiOS = return ua.match(/iPhone|ipad|iPod/i) ? true : false,
-		isWindows = return ua.match(/IEMobile/i) ? true : false;
+		isAndroid = ua.match(/Android/i) ? true : false,
+		isBlackBerry = ua.match(/BlackBerry/i) ? true : false,
+		isiOS = ua.match(/iPhone|ipad|iPod/i) ? true : false,
+		isWindows = ua.match(/IEMobile/i) ? true : false;
 	
 	return {
 		Android : isAndroid,
@@ -99,13 +99,13 @@ exports.setStyle = function(dom, props, val){
 		switch (prop) {
 		case 'opacity':
 			if(!!exports.isMobile.any && /MSIE ([^;]+)/.test(navigator.userAgent)){
-				obj.style.filter = 'alpha(' + prop + '=' + props[prop] + ')'        
+				dom.style.filter = 'alpha(' + prop + '=' + props[prop] + ')'        
 			}else{
-				obj.style[prop] = props[prop];
+				dom.style[prop] = props[prop];
 			}
 			break;
 		default:
-			obj.style[prop] = props[prop] + 'px';
+			dom.style[prop] = props[prop] + 'px';
 			break;
 		}
 	}
