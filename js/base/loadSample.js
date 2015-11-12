@@ -3,35 +3,35 @@
  * createTime 20151021
  */
 define(function(){
-	//²ÎÊı³õÊ¼»¯
+	//å‚æ•°åˆå§‹åŒ–
 	var exports = {},
-		numberList = new Array([1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1], [0, 1, 0, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0], [1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1], [1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1], [1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 0, 1, 0, 0, 1], [1, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1], [1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1], [1, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1], [1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1], [1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1]),  //canvasÊı×ÖµãÕó
-		canvas = document.createElement("canvas"),  //canvasÖ÷»­²¼
+		numberList = new Array([1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1], [0, 1, 0, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0], [1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1], [1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1], [1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 0, 1, 0, 0, 1], [1, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1], [1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1], [1, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1], [1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1], [1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1]),  //canvasæ•°å­—ç‚¹é˜µ
+		canvas = document.createElement("canvas"),  //canvasä¸»ç”»å¸ƒ
 		ctx = canvas.getContext('2d'),
-		maskCanvas = document.createElement('canvas'),  //canvasÕÚÕÖ»º´æ
+		maskCanvas = document.createElement('canvas'),  //canvasé®ç½©ç¼“å­˜
 		maskContext = maskCanvas.getContext('2d'),
-		backgroundColor,  //±³¾°É«
-		maskColor,  //ÕÚÕÖÑÕÉ«
-		color,  //Êı×ÖÑÕÉ«
-		step,  //Ã¿¸öµãÕó³ß´ç
-		screenX,  //Êı×ÖµãÕóÎ»ÖÃÆ«ÒÆÁ¿
-		screenY,   //Êı×ÖµãÕóÎ»ÖÃÆ«ÒÆÁ¿
+		backgroundColor,  //èƒŒæ™¯è‰²
+		maskColor,  //é®ç½©é¢œè‰²
+		color,  //æ•°å­—é¢œè‰²
+		step,  //æ¯ä¸ªç‚¹é˜µå°ºå¯¸
+		screenX,  //æ•°å­—ç‚¹é˜µä½ç½®åç§»é‡
+		screenY,   //æ•°å­—ç‚¹é˜µä½ç½®åç§»é‡
 		bodyWith = document.body.clientWidth || document.documentElement.clientWidth,
 		bodyHeight = document.body.clientHeight || document.documentElement.clientHeight;
 		canvas.width = bodyWith;
 		canvas.height = bodyHeight;
 		maskCanvas.width = bodyWith;
 		maskCanvas.height = bodyHeight;
-	function getNumber(value){   //»ñÈ¡Êı×ÖµãÕóÖµ
+	function getNumber(value){   //è·å–æ•°å­—ç‚¹é˜µå€¼
 		return numberList[value];
 	}
 	/**
-	 * @c »æÖÆ»­²¼
-	 * @value ÏÔÊ¾Êı×Ö00-100
-	 * @num_0 °ÙÎ»ÊıµãÕó
-	 * @num_1 Ê®Î»ÊıµãÕó
-	 * @num_2 ¸öÎ»ÊıµãÕó
-	 * @color »æÖÆµÄÑÕÉ«
+	 * @c ç»˜åˆ¶ç”»å¸ƒ
+	 * @value æ˜¾ç¤ºæ•°å­—00-100
+	 * @num_0 ç™¾ä½æ•°ç‚¹é˜µ
+	 * @num_1 åä½æ•°ç‚¹é˜µ
+	 * @num_2 ä¸ªä½æ•°ç‚¹é˜µ
+	 * @color ç»˜åˆ¶çš„é¢œè‰²
 	 **/
 	function drawNum(c,value,num_0,num_1,num_2,color){
 		c.clearRect(0,0,canvas.width,canvas.height);
@@ -50,14 +50,14 @@ define(function(){
 		}
 		for (i = 0; i < num_1.length; i++) {
 			if (num_1[i] == 0) continue;
-			c.rect(screenX + step + Math.floor(i % 3) * step, screenY + Math.floor(i / 3) * step, step, step);//Êı×Ö¼ä¸ô1¸östep
+			c.rect(screenX + step + Math.floor(i % 3) * step, screenY + Math.floor(i / 3) * step, step, step);//æ•°å­—é—´éš”1ä¸ªstep
 		}
 		for (i = 0; i < num_2.length; i++) {
 			if (num_2[i] == 0) continue;
 			c.rect(screenX  + Math.floor(i % 3) * step + step * 5, screenY + Math.floor(i / 3) * step, step, step);
 		}
 		
-		//»æÖÆ°Ù·ÖºÅ
+		//ç»˜åˆ¶ç™¾åˆ†å·
 		c.moveTo(screenX + step + step * 9.7, screenY);
 		c.lineTo(screenX + step + step * 10.5, screenY);
 		c.lineTo(screenX + step + step * 9.3, screenY + step * 5);
@@ -91,7 +91,7 @@ define(function(){
 		
 		drawNum(ctx,value,num_0,num_1,num_2,color);
 		drawNum(maskContext,value,num_0,num_1,num_2,maskColor);
-		var offsetY = screenY + step * 5 * (100 - value) * 0.01;  //ÕÚÕÖÆ«ÒÆÁ¿
+		var offsetY = screenY + step * 5 * (100 - value) * 0.01;  //é®ç½©åç§»é‡
 		var imgData = maskContext.getImageData(0,offsetY,canvas.width,canvas.height - offsetY);
 		ctx.putImageData(imgData,0,offsetY);
 	}
@@ -106,6 +106,10 @@ define(function(){
 		screenY = (canvas.height - step * 5) / 2;  
 		document.body.appendChild(canvas);
 		exports.setProgress(0);
+	}
+	
+	exports.remove = function(){
+		document.body.removeChild(canvas);
 	}
 	return exports;
 })

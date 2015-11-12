@@ -13,7 +13,10 @@ require.config({
 		weixinSign : 'base/weixinSign',
 		loadSample : 'base/loadSample',
 		SpriteSheet : 'base/SpriteSheet',
-		Sprite : 'base/Sprite'
+		Sprite : 'base/Sprite',
+		animation : 'base/animation',
+		baseTools : 'base/baseTools',
+		tween : 'base/tween'
     },
 	shim : {
 		'zepto':{
@@ -34,8 +37,14 @@ require.config({
 		}
 	}
 });
+require(['animation','tween'],function(animation,tween){
+	console.log(tween)
+	var ani = new animation(document.getElementById("t"),{height:18,left:100},1500,function(){console.log("a")},tween.Bounce.easeIn);
+	ani.start();
+})
+
 //帧动画使用
-require(['SpriteSheet','Sprite'],function(SpriteSheet,Sprite){
+/*require(['SpriteSheet','Sprite'],function(SpriteSheet,Sprite){
 	
 	var s = new SpriteSheet({
 		framerate: 12,
@@ -126,7 +135,7 @@ require(['SpriteSheet','Sprite'],function(SpriteSheet,Sprite){
 			play();
 		},time)
 	}
-})
+})*/
 
 /*require(['swiper'],function(swiper){
 	

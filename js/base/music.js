@@ -1,18 +1,18 @@
 define(function(){
 	var music = function(url,params,pos){
-		var audioStatus = false,  //ÒôÆµ²¥·Å×´Ì¬
-			audioElement,  //ÒôÆµÔªËØ
-			iconElement,  //²¥·ÅÍ¼±êÔªËØ
+		var audioStatus = false,  //éŸ³é¢‘æ’­æ”¾çŠ¶æ€
+			audioElement,  //éŸ³é¢‘å…ƒç´ 
+			iconElement,  //æ’­æ”¾å›¾æ ‡å…ƒç´ 
 			playIcon,
-			initFlag,  //³õÊ¼»¯²¥·Å±ê¼Ç
+			initFlag,  //åˆå§‹åŒ–æ’­æ”¾æ ‡è®°
 			eventName = "ontouchend" in document ? "touchstart" : "click",
 			options = {},
 			defaultOptions = {
 				on:'http://zj.sinaimg.cn/zj_2015/summerholiday2015/images/music_on.png',
 				off:'http://zj.sinaimg.cn/zj_2015/summerholiday2015/images/music_off.png',
-				w:45,
-				h:45,
-				size:23
+				w:90,
+				h:90,
+				size:46
 			}
 		params = params || {};
 		pos = pos || {};
@@ -23,11 +23,11 @@ define(function(){
 		createHTML(options,pos);
 		createAudio(url);
 		
-		iconElement.addEventListener(eventName,_play,false);   //°ó¶¨iconÒôÀÖ¿ª¹ØÊÂ¼ş
-		document.addEventListener(eventName,checkPlay,false);  //°ó¶¨ÊÂ¼ş´¥·¢²¥·Å
+		iconElement.addEventListener(eventName,_play,false);   //ç»‘å®šiconéŸ³ä¹å¼€å…³äº‹ä»¶
+		document.addEventListener(eventName,checkPlay,false);  //ç»‘å®šäº‹ä»¶è§¦å‘æ’­æ”¾
 		
 		/**
-		 * ´´½¨icon½á¹¹
+		 * åˆ›å»ºiconç»“æ„
 		**/
 		function createHTML(opt,pos){
 			var posStr = '',htmlStr = '';
@@ -45,7 +45,7 @@ define(function(){
 		}
 		
 		/**
-		 * ×Ô¶¯²¥·ÅÊÂ¼ş
+		 * è‡ªåŠ¨æ’­æ”¾äº‹ä»¶
 		**/
 		function setState(){
 			if (audioStatus){
@@ -67,7 +67,7 @@ define(function(){
 		}
 		
 		/**
-		 * ÎŞ·¨×Ô¶¯²¥·ÅÇé¿ö´¦Àí
+		 * æ— æ³•è‡ªåŠ¨æ’­æ”¾æƒ…å†µå¤„ç†
 		**/
 		function checkPlay(){
 			if (initFlag){
