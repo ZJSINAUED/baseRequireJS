@@ -1,0 +1,23 @@
+.layer-container{position:absolute;left:0;top:0;width:100%;z-index:19891014;zoom:2}
+.layer-mask,.layer-main{position:fixed;left:0;top:0;width:100%;height:100%;}
+.layer-mask{background-color:rgba(0,0,0,.5);pointer-events:auto}
+.layer-btn span,.layer-child{display:inline-block;position:relative}
+
+.layer-main{display:table;font-family:Helvetica,arial,sans-serif;pointer-events:none}
+.layer-main .section{display:table-cell;vertical-align:middle;text-align:center}
+.layer-child{text-align:left;background-color:#fff;font-size:14px;border-radius:6px;box-shadow:0 0 8px rgba(0,0,0,.1);pointer-events:auto;-webkit-animation-fill-mode:both;animation-fill-mode:both;-webkit-animation-duration:.18s;animation-duration:.18s}
+.layer-border{border:1px solid #999}
+.layer-child {max-width: 260px;min-width: 150px;}
+
+.layer-child h3{margin:0;padding:0 45px 0 10px;height:50px;line-height:50px;font-size:16px;font-weight:400;border-radius:5px 5px 0 0;border-bottom:1px solid #EBEBEB}
+.layer-btn span,.layer-child h3{text-overflow:ellipsis;overflow:hidden;white-space:nowrap}
+.layer-cont{padding:20px 15px;line-height:22px;border-radius:5px}
+
+.layer-btn{position:relative;height:40px;line-height:40px;font-size:0;text-align:center;border-top:1px solid #EBEBEB}
+.layer-btn span{width:50%;text-align:center;font-size:14px;cursor:pointer;border-radius:0 5px 0 0}
+.layer-btn span:first-child{height:39px;background-color:#fff;border-radius:0 0 0 5px}
+.layer-btn:before{content:'\20'; position:absolute; width:1px; height:39px; left:50%; top:0; background-color:#EBEBEB;}
+
+.layer-close-icon{position:absolute;right:7px;top:10px;width:30px;height:30px;border:0;font-weight:400;background:0 0;cursor:pointer;-webkit-appearance:none;font-size:30px}
+.layer-close-icon::after,.layer-close-icon::before{position:absolute;left:5px;top:13px;content:'';width:20px;height:2px;background-color:rgba(0,0,0,.3);transform:rotate(45deg);-webkit-transform:rotate(45deg);border-radius:3px}
+.layer-close-icon::after{transform:rotate(-45deg);-webkit-transform:rotate(-45deg)}
