@@ -1,15 +1,15 @@
 /**
  * animation
- * ¶¯»­Ö´ĞĞ
- * @params {dom} - dom dom½Úµã 
- *         {object} - props ÔªËØ¶¯»­Î»ÖÃ 
- *         {number} - speed ¶¯»­Ö´ĞĞÊ±¼ä 
- *         {string} - easing ¶¯»­º¯Êı {function} - easing Ö´ĞĞ»Øµ÷ 
- *         {function} - callback Ö´ĞĞ»Øµ÷
+ * åŠ¨ç”»æ‰§è¡Œ
+ * @params {dom} - dom domèŠ‚ç‚¹ 
+ *         {object} - props å…ƒç´ åŠ¨ç”»ä½ç½® 
+ *         {number} - speed åŠ¨ç”»æ‰§è¡Œæ—¶é—´ 
+ *         {string} - easing åŠ¨ç”»å‡½æ•° {function} - easing æ‰§è¡Œå›è°ƒ 
+ *         {function} - callback æ‰§è¡Œå›è°ƒ
  * @interface 
- * start ¶¯»­¿ªÊ¼Ö´ĞĞ
- * stop ¶¯»­Í£Ö¹Ö´ĞĞ
- * reverse ¶¯»­·´Ïò²¥·Å
+ * start åŠ¨ç”»å¼€å§‹æ‰§è¡Œ
+ * stop åŠ¨ç”»åœæ­¢æ‰§è¡Œ
+ * reverse åŠ¨ç”»åå‘æ’­æ”¾
  **/
 
 define(['baseTools'],function(baseTools){

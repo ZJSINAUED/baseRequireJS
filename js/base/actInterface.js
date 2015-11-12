@@ -1,9 +1,9 @@
 define(['jsonp'],function(jsonp){
 	var exports = {},
-		setLoading = false,  //标识载入样式结构是否创建
-		flagQueue = [],  //请求标识队列
-		loadingElement,  //载入样式结构
-		lockFlag = true;  //限制同接口同ID不能同时请求
+		setLoading = false,  //鏍囪瘑杞藉叆鏍峰紡缁撴瀯鏄惁鍒涘缓
+		flagQueue = [],  //璇锋眰鏍囪瘑闃熷垪
+		loadingElement,  //杞藉叆鏍峰紡缁撴瀯
+		lockFlag = true;  //闄愬埗鍚屾帴鍙ｅ悓ID涓嶈兘鍚屾椂璇锋眰
 		
 	function showLoading(params){
 		params = params || {};
@@ -51,7 +51,7 @@ define(['jsonp'],function(jsonp){
 			flagQueue.splice(index,1);
 		}
 		
-		if (setLoading && flagQueue.length == 0){  //载入队列清空后隐藏loading
+		if (setLoading && flagQueue.length == 0){  //杞藉叆闃熷垪娓呯┖鍚庨殣钘弆oading
 			loadingElement.style.display = 'none';
 		}
 	}

@@ -1,4 +1,4 @@
-//´¥ÆÁÊÂ¼ş
+//è§¦å±äº‹ä»¶
 var touch = "ontouchend" in window,eventTouch = function(elem, fn){
     var move;
     elem.addEventListener('touchmove', function(){
@@ -11,7 +11,7 @@ var touch = "ontouchend" in window,eventTouch = function(elem, fn){
     }, false); 
 };
 /**
- * layerÌá¹©»ù´¡alert,message,confirm,loading·½·¨
+ * layeræä¾›åŸºç¡€alert,message,confirm,loadingæ–¹æ³•
  *
  **/
 var layer = {
@@ -68,20 +68,20 @@ var extend = function(source,obj){
 	return newobj;
 }
 /**
- * structure Ìá¹©HTML½á¹¹
- * @params options¶ÔÏó
- * 		mask {Boolean} ÊÇ·ñÉú³ÉÕÚÕÖ {String} Éú³ÉµÄÕÚÕÖÑùÊ½
- * 		anim {Boolean} ÊÇ·ñÌí¼Ó¶¯»­Àà ÀàÃû£ºlayer-anim
- * 		maskClose {Boolean} ÊÇ·ñµã»÷ÕÚÕÖ¼´¹Ø±Õ
- * 		fixed {Boolean} Ä¬ÈÏdisplayÑùÊ½
- * 		style {String} fixedÊ§Ğ§ÊÇÑùÊ½
- * 		top {String} fixedÊ§Ğ§top²ÎÊı£¬Ä¬ÈÏ100
- * 		title {String} ±êÌâ {Array} µÚÒ»ÏîÎª±êÌâ µÚ¶şÏîÎª±êÌâÑùÊ½
- * 		btn {Array} °´Å¥Ãû³ÆÊı×é
- * 		yes {Function} µÚÒ»¸ö°´Å¥¶ÔÓ¦»Øµ÷º¯Êı
- * 		no{Function} µÚ¶ş¸ö°´Å¥¶ÔÓ¦»Øµ÷º¯Êı
- * 		success {Function} ½á¹¹Éú³É³É¹¦»Øµ÷º¯Êı
- * 		cancel {Function} ¹Ø±Õµ¯¿ò»Øµ÷º¯Êı
+ * structure æä¾›HTMLç»“æ„
+ * @params optionså¯¹è±¡
+ * 		mask {Boolean} æ˜¯å¦ç”Ÿæˆé®ç½© {String} ç”Ÿæˆçš„é®ç½©æ ·å¼
+ * 		anim {Boolean} æ˜¯å¦æ·»åŠ åŠ¨ç”»ç±» ç±»åï¼šlayer-anim
+ * 		maskClose {Boolean} æ˜¯å¦ç‚¹å‡»é®ç½©å³å…³é—­
+ * 		fixed {Boolean} é»˜è®¤displayæ ·å¼
+ * 		style {String} fixedå¤±æ•ˆæ˜¯æ ·å¼
+ * 		top {String} fixedå¤±æ•ˆtopå‚æ•°ï¼Œé»˜è®¤100
+ * 		title {String} æ ‡é¢˜ {Array} ç¬¬ä¸€é¡¹ä¸ºæ ‡é¢˜ ç¬¬äºŒé¡¹ä¸ºæ ‡é¢˜æ ·å¼
+ * 		btn {Array} æŒ‰é’®åç§°æ•°ç»„
+ * 		yes {Function} ç¬¬ä¸€ä¸ªæŒ‰é’®å¯¹åº”å›è°ƒå‡½æ•°
+ * 		no{Function} ç¬¬äºŒä¸ªæŒ‰é’®å¯¹åº”å›è°ƒå‡½æ•°
+ * 		success {Function} ç»“æ„ç”ŸæˆæˆåŠŸå›è°ƒå‡½æ•°
+ * 		cancel {Function} å…³é—­å¼¹æ¡†å›è°ƒå‡½æ•°
  **/
 var index = 0, classes = ['layer-container'],structure  = function(options){
 	this.config = extend(this.config,options);
@@ -117,7 +117,7 @@ pt.create = function(){
             return '';
         }
         btndom = '<span type="1">'+ config.btn[0] +'</span>'
-		//½ö¿¼ÂÇ2¸ö°´Å¥
+		//ä»…è€ƒè™‘2ä¸ªæŒ‰é’®
         if(btns === 2){
             btndom += '<span type="0">'+ config.btn[1] +'</span>';
         }
@@ -154,7 +154,7 @@ pt.create = function(){
 pt.__bindEvent = function(config, elem){
     var that = this;
     
-    //¹Ø±Õ°´Å¥
+    //å…³é—­æŒ‰é’®
 	var closeFunc = function(){
 		config.cancel && config.cancel();
 		that.close(elem);
@@ -164,7 +164,7 @@ pt.__bindEvent = function(config, elem){
         touch ? eventTouch(close,closeFunc) : close.onclick = closeFunc;
     }
     
-    //È·ÈÏÈ¡Ïû
+    //ç¡®è®¤å–æ¶ˆ
     var btnFunc = function(){
         var type = this.getAttribute('type');
         if(type == 0){
@@ -180,7 +180,7 @@ pt.__bindEvent = function(config, elem){
 			touch ? eventTouch(btns[i],btnFunc) : btns[i].onclick = btnFunc;
         }
     }
-    //µãÕÚÕÖ¹Ø±Õ
+    //ç‚¹é®ç½©å…³é—­
     if(config.mask && config.maskClose){
         var mask = elem.getElementsByClassName("layer-mask")[0];
 		touch ? eventTouch(mask,closeFunc) : mask.onclick = closeFunc;

@@ -1,18 +1,18 @@
 /**
  * baseTools.js
- * Ìá¹©Ô­ÉúJSÑ¡ÔñÆ÷Ö§³Ö
+ * æä¾›åŸç”ŸJSé€‰æ‹©å™¨æ”¯æŒ
  **/
 define(function(){
 var exports = {};
 /**
  * getElementsByClass
- * ¸ù¾İÀàÃû»ñÈ¡DOM½Úµã
- * @params {dom} nodeÔªËØ½áµã {string} classnameÀàÃû
- * @return {array} DOMÊı×é
+ * æ ¹æ®ç±»åè·å–DOMèŠ‚ç‚¹
+ * @params {dom} nodeå…ƒç´ ç»“ç‚¹ {string} classnameç±»å
+ * @return {array} DOMæ•°ç»„
  **/
 exports.getElementsByClass = function(node,classname){
 	if (node.getElementsByClassName) {
-		return node.getElementsByClassName(classname);  //¸ß¼¶ä¯ÀÀÆ÷¿ÉÒÔÖ±½ÓÖ§³ÖgetElementsByClassName
+		return node.getElementsByClassName(classname);  //é«˜çº§æµè§ˆå™¨å¯ä»¥ç›´æ¥æ”¯æŒgetElementsByClassName
 	} else {
 		return (function getElementsByClass(searchClass,node) {
 			if ( node == null ) node = document;
@@ -33,11 +33,11 @@ exports.getElementsByClass = function(node,classname){
 	}
 }
 /**
- * ÀàÃûÏà¹Ø²Ù×÷
- * hasClass£ºÅĞ¶ÏÊÇ·ñ´æÔÚ¸ÃÏîÀàÃû
- * addClass£ºÔö¼ÓÀàÃû
- * removeClass£ºÉ¾³ıÀàÃû
- * @params {dom}obj ½ÚµãÔªËØ {string}cls ½øĞĞ²Ù×÷µÄÀàÃû
+ * ç±»åç›¸å…³æ“ä½œ
+ * hasClassï¼šåˆ¤æ–­æ˜¯å¦å­˜åœ¨è¯¥é¡¹ç±»å
+ * addClassï¼šå¢åŠ ç±»å
+ * removeClassï¼šåˆ é™¤ç±»å
+ * @params {dom}obj èŠ‚ç‚¹å…ƒç´  {string}cls è¿›è¡Œæ“ä½œçš„ç±»å
  **/
 exports.hasClass = function(obj, cls) { 
     return obj.className.match(new RegExp('(\\s|^)' + cls + '(\\s|$)'));  
@@ -52,7 +52,7 @@ exports.removeClass = function(obj, cls) {
     }
 }
 /**
- * ¿Í»§¶Ë¼ì²â
+ * å®¢æˆ·ç«¯æ£€æµ‹
  * @return {object} 
  * {}
  **/
@@ -73,8 +73,8 @@ exports.isMobile = function(){
 }();
 /**
  * getStyle
- * »ñÈ¡CSSÑùÊ½
- * @params {dom}dom - ÔªËØ½áµã {string}prop - cssÊôĞÔ
+ * è·å–CSSæ ·å¼
+ * @params {dom}dom - å…ƒç´ ç»“ç‚¹ {string}prop - csså±æ€§
  **/
 exports.getStyle = function(dom, prop) {
 	var style = dom.currentStyle || window.getComputedStyle(dom, '');
@@ -85,9 +85,9 @@ exports.getStyle = function(dom, prop) {
 }
 /**
  * setStyle
- * ¸Ä±äCSSÑùÊ½
- * @params {dom} dom - ÔªËØ½áµã {string} prop - ½áµãcssÊôĞÔÃû {string} - val ÊôĞÔ¶ÔÓ¦Öµ 
- * @params {dom} dom - ÔªËØ½áµã {object} prop - ĞèÒª¸Ä±äÊôĞÔ¶ÔÏó 
+ * æ”¹å˜CSSæ ·å¼
+ * @params {dom} dom - å…ƒç´ ç»“ç‚¹ {string} prop - ç»“ç‚¹csså±æ€§å {string} - val å±æ€§å¯¹åº”å€¼ 
+ * @params {dom} dom - å…ƒç´ ç»“ç‚¹ {object} prop - éœ€è¦æ”¹å˜å±æ€§å¯¹è±¡ 
  **/
 exports.setStyle = function(dom, props, val){
 	if (typeof props == "string" && typeof val != "undefined"){
@@ -111,13 +111,13 @@ exports.setStyle = function(dom, props, val){
 	}
 }
 
-//Ò³Ãæ¸ß¶È
+//é¡µé¢é«˜åº¦
 exports.getbodyCH = function(){
 	var bh=document.body.clientHeight,
 		eh=document.documentElement.clientHeight;
 	return bh > eh ? bh : eh;
 }
-//ÆÁÄ»¸ß¶È
+//å±å¹•é«˜åº¦
 exports.showbodyCH = function(){
 	if(window.innerHeight){
 		return window.innerHeight;
@@ -127,13 +127,13 @@ exports.showbodyCH = function(){
 		return document.body.clientHeight;
 	}
 }
-//ÆÁÄ»¿í¶È
+//å±å¹•å®½åº¦
 exports.getbodyCW = function(){
 	var bw=document.body.clientWidth,
 		ew=document.documentElement.clientWidth;
 	return bw > ew ? bw : ew;
 }
-//¹ö¶¯Ìõ¸ß¶È
+//æ»šåŠ¨æ¡é«˜åº¦
 exports.scrolltop = function(){
 	if(window.pageYOffset){
 		return window.pageYOffset;
@@ -144,11 +144,11 @@ exports.scrolltop = function(){
 	}
 }
 /**
- * ÊÂ¼ş°ó¶¨²Ù×÷event¶ÔÏó
- * bind£º°ó¶¨ÊÂ¼ş
- * unbind£º½â³ı°ó¶¨
- * cancelBubble£º×èÖ¹ÊÂ¼şÃ°Åİ
- * stopDefault£º×èÖ¹ä¯ÀÀÆ÷Ä¬ÈÏĞĞÎª
+ * äº‹ä»¶ç»‘å®šæ“ä½œeventå¯¹è±¡
+ * bindï¼šç»‘å®šäº‹ä»¶
+ * unbindï¼šè§£é™¤ç»‘å®š
+ * cancelBubbleï¼šé˜»æ­¢äº‹ä»¶å†’æ³¡
+ * stopDefaultï¼šé˜»æ­¢æµè§ˆå™¨é»˜è®¤è¡Œä¸º
  **/
 exports.event = {
 	bind : function(element, eventType, handler, capture) {
@@ -193,7 +193,7 @@ exports.event = {
             element["on" + eventType] = null;
         }
     },
-	cancelBubble : function(e) {  //Ã°Åİ´¦Àí
+	cancelBubble : function(e) {  //å†’æ³¡å¤„ç†
         e = e || window.event;
 
         if (e.stopPropagation) {
@@ -203,10 +203,10 @@ exports.event = {
         }
     },
 	stopDefault : function(e){
-		//×èÖ¹Ä¬ÈÏä¯ÀÀÆ÷¶¯×÷(W3C) 
+		//é˜»æ­¢é»˜è®¤æµè§ˆå™¨åŠ¨ä½œ(W3C) 
 		if ( e && e.preventDefault ) {
 			e.preventDefault(); 
-		}else{//IEÖĞ×èÖ¹º¯ÊıÆ÷Ä¬ÈÏ¶¯×÷µÄ·½Ê½
+		}else{//IEä¸­é˜»æ­¢å‡½æ•°å™¨é»˜è®¤åŠ¨ä½œçš„æ–¹å¼
 			window.event.returnValue = false; 
 		}
 		return false; 
