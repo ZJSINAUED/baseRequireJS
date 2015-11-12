@@ -1,7 +1,7 @@
 /**
- * @params {ctx} »­²¼»·¾³
- * @params {spriteSheet} »ùÓÚSpriteSheetÊä³öµÄÖ¡¶¯»­Êı¾İ
- * @params {frameOrAnimation} ¿ªÊ¼ÔËĞĞµÄ¶¯»­Æ¬¶Î£¬´æÔÚÓÚSpriteSheetµÄ_animationsÁĞ±íÖĞ
+ * @params {ctx} ç”»å¸ƒç¯å¢ƒ
+ * @params {spriteSheet} åŸºäºSpriteSheetè¾“å‡ºçš„å¸§åŠ¨ç”»æ•°æ®
+ * @params {frameOrAnimation} å¼€å§‹è¿è¡Œçš„åŠ¨ç”»ç‰‡æ®µï¼Œå­˜åœ¨äºSpriteSheetçš„_animationsåˆ—è¡¨ä¸­
  *
  **/
 define(function(){
@@ -21,9 +21,9 @@ function Sprite(ctx, spriteSheet, frameOrAnimation) {
 	this.paused = true;
 	//SpriteSheet data
 	this.spriteSheet = spriteSheet;
-	//current frame index£¬¸ù¾İcanvasäÖÈ¾¼ä¸ô¼ÇÂ¼µÄÖ¡Êı ¿ÏÄÜ·ÇÕûÊı
+	//current frame indexï¼Œæ ¹æ®canvasæ¸²æŸ“é—´éš”è®°å½•çš„å¸§æ•° è‚¯èƒ½éæ•´æ•°
 	this.currentAnimationFrame = 0;
-	//Ã¿ÃëÖ¡Êı
+	//æ¯ç§’å¸§æ•°
 	this.framerate = 0;
 	
 	/**
@@ -33,13 +33,13 @@ function Sprite(ctx, spriteSheet, frameOrAnimation) {
 	this._currentFrame = null;
 	
 	/**
-	 * Ö¸¶¨²¥·Å¶¯»­£¬ÔòÁ¢¼´µ÷ÓÃgotoAndPlay£¬·ñÔòĞèÁíÍâµ÷ÓÃ
+	 * æŒ‡å®šæ’­æ”¾åŠ¨ç”»ï¼Œåˆ™ç«‹å³è°ƒç”¨gotoAndPlayï¼Œå¦åˆ™éœ€å¦å¤–è°ƒç”¨
 	 **/
 	if (frameOrAnimation) { this.gotoAndPlay(frameOrAnimation); }
 }
 var p = Sprite.prototype;
 /**
- * »æÖÆµ±Ç°Ö¡
+ * ç»˜åˆ¶å½“å‰å¸§
  **/
 p.draw = function() {
 	var o = this.spriteSheet.getFrame(this._currentFrame|0);
@@ -52,19 +52,19 @@ p.draw = function() {
 	return true;
 };
 /**
- * ²¥·Å±»Í£Ö¹µÄ¶¯»­
+ * æ’­æ”¾è¢«åœæ­¢çš„åŠ¨ç”»
  **/
 p.play = function() {
 	this.paused = false;
 };
 /**
- * Í£Ö¹¶¯»­
+ * åœæ­¢åŠ¨ç”»
  **/
 p.stop = function() {
 	this.paused = true;
 };
 /**
- * ²¥·ÅÄ³Ò»¶Î¶¯»­
+ * æ’­æ”¾æŸä¸€æ®µåŠ¨ç”»
  * @params {frameOrAnimation}
  **/
 p.gotoAndPlay = function(frameOrAnimation) {
@@ -72,7 +72,7 @@ p.gotoAndPlay = function(frameOrAnimation) {
 	this._goto(frameOrAnimation);
 };
 /**
- * ³õÊ¼»¯µ½Ä³Ò»¶Î¶¯»­µÄµÚÒ»Ö¡
+ * åˆå§‹åŒ–åˆ°æŸä¸€æ®µåŠ¨ç”»çš„ç¬¬ä¸€å¸§
  * @params {frameOrAnimation}
  **/
 p.gotoAndStop = function(frameOrAnimation) {
@@ -80,11 +80,11 @@ p.gotoAndStop = function(frameOrAnimation) {
 	this._goto(frameOrAnimation);
 };
 /**
- * Ñ­»·µ÷ÓÃÀ´Ö´ĞĞ¶¯»­²¥·Å
- * @params {time} »æÖÆµÄÊ±¼ä¼ä¸ô
+ * å¾ªç¯è°ƒç”¨æ¥æ‰§è¡ŒåŠ¨ç”»æ’­æ”¾
+ * @params {time} ç»˜åˆ¶çš„æ—¶é—´é—´éš”
  **/
 p.advance = function(time) {
-	//Í¬Ê±¿¼ÂÇspriteSheetËùĞèÍ¼Æ¬ÊÇ·ñÈ«²¿ ¼ÓÔØÍê³É
+	//åŒæ—¶è€ƒè™‘spriteSheetæ‰€éœ€å›¾ç‰‡æ˜¯å¦å…¨éƒ¨ åŠ è½½å®Œæˆ
 	if (!this.paused && this.spriteSheet.complete == true) {
 		var fps = this.framerate || this.spriteSheet.framerate;
 		var t = (fps && time != null) ? time/(1000/fps) : 1;
@@ -93,8 +93,8 @@ p.advance = function(time) {
 	}
 };
 /**
- * ÅĞ¶Ïµ±Ç°²¥·ÅÖ¡µÄ±ä»¯
- * @params {frameDelta} ¸ù¾İ»æÖÆÊ±¼ä¼°Ã¿ÃëÖ¸¶¨Ö¡ÊıµÃ³öµÄÌøÖ¡Êı
+ * åˆ¤æ–­å½“å‰æ’­æ”¾å¸§çš„å˜åŒ–
+ * @params {frameDelta} æ ¹æ®ç»˜åˆ¶æ—¶é—´åŠæ¯ç§’æŒ‡å®šå¸§æ•°å¾—å‡ºçš„è·³å¸§æ•°
  **/
 p._normalizeFrame = function(frameDelta) {
 	frameDelta = frameDelta || 0;
@@ -109,7 +109,7 @@ p._normalizeFrame = function(frameDelta) {
 		if (animFrame + frameDelta * speed >= l) {
 			var next = animation.next;
 			if (next) {
-				// ²¥·ÅÏÂÒ»¶Î¶¯»­
+				// æ’­æ”¾ä¸‹ä¸€æ®µåŠ¨ç”»
 				return this._goto(next, frameDelta - (l - animFrame) / speed);
 			} else {
 				// end.
@@ -136,9 +136,9 @@ p._normalizeFrame = function(frameDelta) {
 	}
 };
 /**
- * ²¥·ÅÄ³Ò»¶Î¶¯»­
- * @params {frameOrAnimation} ²¥·Å¶¯»­Ãû³Æ
- * @params {frame} ²¥·Å¿ªÊ¼Ö¡
+ * æ’­æ”¾æŸä¸€æ®µåŠ¨ç”»
+ * @params {frameOrAnimation} æ’­æ”¾åŠ¨ç”»åç§°
+ * @params {frame} æ’­æ”¾å¼€å§‹å¸§
  **/
 p._goto = function(frameOrAnimation, frame) {
 	this.currentAnimationFrame = 0;

@@ -21,7 +21,7 @@ define(function(){
 		var srcs = srcs || [];
 		var len = srcs.length;
 		if (len < 1) return;
-		//¼ÇÂ¼¼ÓÔØ³¤¶È
+		//è®°å½•åŠ è½½é•¿åº¦
 		var loadNum = 0,loading_p = 0,imgElements = [];
 		var loading = function(){
 			if (loadNum < len){

@@ -1,15 +1,15 @@
 /**
- * ×éÖ¯Ö¡¶¯»­Êı¾İ
- * @params {data} ¶ÔÏó½âÎöÖ÷Òª°üÀ¨images¡¢frames¡¢animations£¬
- * images: ["path/image2.png", "path/image2.png"] Í¼Æ¬Êı×é£¬Ò²¿ÉÒÔÊÇimg¶ÔÏóÊı×é
- * frames: {width:64, height:64, count:20, regX: 32, regY:64, spacing:0, margin:0}  //×Ô¶¯¼ÆËãÖ¡¶¯»­Î»ÖÃ
+ * ç»„ç»‡å¸§åŠ¨ç”»æ•°æ®
+ * @params {data} å¯¹è±¡è§£æä¸»è¦åŒ…æ‹¬imagesã€framesã€animationsï¼Œ
+ * images: ["path/image2.png", "path/image2.png"] å›¾ç‰‡æ•°ç»„ï¼Œä¹Ÿå¯ä»¥æ˜¯imgå¯¹è±¡æ•°ç»„
+ * frames: {width:64, height:64, count:20, regX: 32, regY:64, spacing:0, margin:0}  //è‡ªåŠ¨è®¡ç®—å¸§åŠ¨ç”»ä½ç½®
  * frames: [
  * 		// x, y, width, height, imageIndex*, regX*, regY*
  * 		[64, 0, 96, 64],
  * 		[0, 0, 64, 64, 1, 32, 32]
  * 		// etc.
  * ]
- * animations: {sit: 7}  //¶¯»­µ¥Ö¡
+ * animations: {sit: 7}  //åŠ¨ç”»å•å¸§
  * animations: {
  * 		// start, end, next*, speed*
  * 		run: [0, 8],
@@ -39,7 +39,7 @@ function SpriteSheet(data){
 	this._data = null;
 	this._loadCount = 0;
 	
-	//±ÈÌØÍ¼²ÎÊı
+	//æ¯”ç‰¹å›¾å‚æ•°
 	this._frameHeight = 0;
 	this._frameWidth = 0;
 	this._numFrames = 0;
@@ -48,7 +48,7 @@ function SpriteSheet(data){
 	this._spacing = 0;
 	this._margin = 0;
 	
-	//ÔØÈëÊı¾İ
+	//è½½å…¥æ•°æ®
 	this._parseData(data);
 }
 
@@ -57,7 +57,7 @@ var p = SpriteSheet.prototype;
 p.getAnimations = function() {
 	return this._animations.slice();
 };
-//Í¨¹ıÉèÖÃget·½·¨À´Ä¬ÈÏ»ñÈ¡animationsµÄÖµ
+//é€šè¿‡è®¾ç½®getæ–¹æ³•æ¥é»˜è®¤è·å–animationsçš„å€¼
 try {
 	Object.defineProperties(p, {
 		animations: { get: p.getAnimations }
@@ -89,7 +89,7 @@ p.getFrameBounds = function(frameIndex, rectangle) {
 	return frame ? (rectangle||new Rectangle()).setValues(-frame.regX, -frame.regY, frame.rect.width, frame.rect.height) : null;
 };
 /**
- * ½âÎöÊı¾İ
+ * è§£ææ•°æ®
  * @params {data} 
  **/
 p._parseData = function(data) {
@@ -173,7 +173,7 @@ p._parseData = function(data) {
 		}
 	}
 };
-// Í¼Æ¬ÔØÈëÍê³É
+// å›¾ç‰‡è½½å…¥å®Œæˆ
 p._handleImageLoad = function() {
 	if (--this._loadCount == 0) {
 		this._calculateFrames();
@@ -181,14 +181,14 @@ p._handleImageLoad = function() {
 	}
 };
 /**
- * ×Ô¶¯¼ÆËãÖ¡²ÎÊı
+ * è‡ªåŠ¨è®¡ç®—å¸§å‚æ•°
  **/
 p._calculateFrames = function() {
 	if (this._frames || this._frameWidth == 0) { return; }
 
 	this._frames = [];
 
-	var maxFrames = this._numFrames || 100000; // ÏŞÖÆ×î¶àÖ¡Êı
+	var maxFrames = this._numFrames || 100000; // é™åˆ¶æœ€å¤šå¸§æ•°
 	var frameCount = 0, frameWidth = this._frameWidth, frameHeight = this._frameHeight;
 	var spacing = this._spacing, margin = this._margin;
 	

@@ -6,11 +6,11 @@ define(['sinaSSOController','jsonp'],function(sinaSSOController,jsonp){
 		siteId = 908,
 		token = '',
 		currentUserInfo = null;
-	//µ¯³öĞÅÏ¢
+	//å¼¹å‡ºä¿¡æ¯
 	function showMessage(message){
-		alert(message);  //ÔİÊ±Ê¹ÓÃÄ¬ÈÏµ¯¿ò
+		alert(message);  //æš‚æ—¶ä½¿ç”¨é»˜è®¤å¼¹æ¡†
 	}
-	//»ñÈ¡token
+	//è·å–token
 	function getToken(callback) {
 		var url = apiRootCokkieAuth + 'postaction/get_token.php';
 		if (token == '') {
@@ -32,7 +32,7 @@ define(['sinaSSOController','jsonp'],function(sinaSSOController,jsonp){
 			}
 		}
 	}
-	//¼ì²éµÇÂ¼
+	//æ£€æŸ¥ç™»å½•
 	function checkLogin() {
 		var userCookie = sinaSSOManager.getSinaCookie();
 		if (!userCookie) {
@@ -41,13 +41,13 @@ define(['sinaSSOController','jsonp'],function(sinaSSOController,jsonp){
 			return true;
 		}
 	}
-	//Ä¬ÈÏ»Øµ÷
+	//é»˜è®¤å›è°ƒ
 	function defaultCallback(data, fn) {
 		if (typeof(fn) == 'function') {
 			fn(data);
 		}else{
 			if (data.error === '0') {
-				showMessage("·ÖÏí³É¹¦£¡");
+				showMessage("åˆ†äº«æˆåŠŸï¼");
 			}else{
 				showMessage(data.errmsg);
 			}
@@ -70,7 +70,7 @@ define(['sinaSSOController','jsonp'],function(sinaSSOController,jsonp){
 	exports.checkLogin = checkLogin;
 	exports.postWeibo = function(content, pid, callback) {
 		if (content == '') {
-			showMessage('ÇëÊäÈëÄÚÈİ');
+			showMessage('è¯·è¾“å…¥å†…å®¹');
 			return;
 		}
 		var url = apiRootCokkieAuth + 'postaction/json_add_mblog.php';
@@ -79,10 +79,10 @@ define(['sinaSSOController','jsonp'],function(sinaSSOController,jsonp){
 			pid : pid || ""
 		});
 	}
-	//´øÍ¼Æ¬Á´½Ó·¢Î¢²©
+	//å¸¦å›¾ç‰‡é“¾æ¥å‘å¾®åš
 	exports.postWeiboByPic = function(content, pic_url, callback) {
 		if (content == '') {
-			self.showMessage('ÇëÊäÈëÄÚÈİ');
+			self.showMessage('è¯·è¾“å…¥å†…å®¹');
 			return;
 		}
 		var url = apiRootCokkieAuth + 'postaction/json_add_mblog.php';
@@ -91,17 +91,17 @@ define(['sinaSSOController','jsonp'],function(sinaSSOController,jsonp){
 			pic_url : pic_url || ""
 		});
 	}
-	//×ª·¢Î¢²©
+	//è½¬å‘å¾®åš
 	exports.repostWeibo = function(mid, content, isComment, callback) {
 		if (content == '') {
-			showMessage('ÇëÊäÈëÄÚÈİ');
+			showMessage('è¯·è¾“å…¥å†…å®¹');
 			return;
 		}
 		var url = apiRootCokkieAuth + 'postaction/json_repost_mblog.php';
 		postRequest(url,callback,{
 			status : content,
 			mid : mid,
-			is_comment : isComment ? isComment : 0  //ÊÇ·ñÔÚ×ª·¢µÄÍ¬Ê±·¢±íÆÀÂÛ¡£0±íÊ¾²»·¢±íÆÀÂÛ£¬1±íÊ¾·¢±íÆÀÂÛ¸øµ±Ç°Î¢²©£¬2±íÊ¾·¢±íÆÀÂÛ¸øÔ­Î¢²©£¬3ÊÇ1¡¢2¶¼·¢±í¡£Ä¬ÈÏÎª0¡£
+			is_comment : isComment ? isComment : 0  //æ˜¯å¦åœ¨è½¬å‘çš„åŒæ—¶å‘è¡¨è¯„è®ºã€‚0è¡¨ç¤ºä¸å‘è¡¨è¯„è®ºï¼Œ1è¡¨ç¤ºå‘è¡¨è¯„è®ºç»™å½“å‰å¾®åšï¼Œ2è¡¨ç¤ºå‘è¡¨è¯„è®ºç»™åŸå¾®åšï¼Œ3æ˜¯1ã€2éƒ½å‘è¡¨ã€‚é»˜è®¤ä¸º0ã€‚
 		});
 	}
 	return exports;
