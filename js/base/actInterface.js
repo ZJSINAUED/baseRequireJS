@@ -7,7 +7,7 @@ define(['jsonp'],function(jsonp){
 		
 	function showLoading(params){
 		params = params || {};
-		if (params.show || true){
+		if (typeof params.show == "undefined" ||  (typeof params.show != "undefined" && !!params.show == true)){
 			if (!setLoading){
 				createLoading(params.text || 'loading...');
 			}
@@ -78,11 +78,11 @@ define(['jsonp'],function(jsonp){
 		postRequest("l-"+data.act_id,"http://act.city.sina.com.cn/interface/activity/json_get_user_works.php",data,cb,params);
 	}
 	
-	exports.recordInfo = function(data,cb,text){
+	exports.recordInfo = function(data,cb,params){
 		postRequest("i-"+data.act_id,"http://act.city.sina.com.cn/interface/activity/json_add_signup.php",data,cb,params);
 	}
 	
-	exports.checkInfo = function(data,cb,text){
+	exports.checkInfo = function(data,cb,params){
 		postRequest("c-"+data.act_id,"http://act.city.sina.com.cn/interface/activity/json_get_field_data.php",data,cb,params);
 	}
 	

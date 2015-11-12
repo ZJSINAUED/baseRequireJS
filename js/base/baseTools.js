@@ -7,10 +7,10 @@ var exports = {};
 /**
  * getElementsByClass
  * 根据类名获取DOM节点
- * @params {node}元素结点 {classname}类名
- * @return array DOM数组
+ * @params {dom} node元素结点 {string} classname类名
+ * @return {array} DOM数组
  **/
-exports.getElementsByClass = function(node,classname){ 
+exports.getElementsByClass = function(node,classname){
 	if (node.getElementsByClassName) {
 		return node.getElementsByClassName(classname);  //高级浏览器可以直接支持getElementsByClassName
 	} else {
@@ -37,7 +37,7 @@ exports.getElementsByClass = function(node,classname){
  * hasClass：判断是否存在该项类名
  * addClass：增加类名
  * removeClass：删除类名
- * @params {obj} 节点元素 {cls} 进行操作的类名
+ * @params {dom}obj 节点元素 {string}cls 进行操作的类名
  **/
 exports.hasClass = function(obj, cls) { 
     return obj.className.match(new RegExp('(\\s|^)' + cls + '(\\s|$)'));  
@@ -51,10 +51,66 @@ exports.removeClass = function(obj, cls) {
         obj.className = obj.className.replace(reg, ' ');
     }
 }
-//获取currentStyle
-exports.getcss = function(dom){
-	return dom.currentStyle || document.defaultView.getComputedStyle(dom, null);
+/**
+ * 客户端检测
+ * @return {object} 
+ * {}
+ **/
+exports.isMobile = function(){
+	var ua = navigator.userAgent,
+		isAndroid = return ua.match(/Android/i) ? true : false,
+		isBlackBerry = return ua.match(/BlackBerry/i) ? true : false,
+		isiOS = return ua.match(/iPhone|ipad|iPod/i) ? true : false,
+		isWindows = return ua.match(/IEMobile/i) ? true : false;
+	
+	return {
+		Android : isAndroid,
+		BlackBerry : isBlackBerry,
+		iOS : isiOS,
+		Windows : isWindows,
+		any : (isAndroid || isBlackBerry || isiOS || isWindows)
+	}
+}();
+/**
+ * getStyle
+ * 获取CSS样式
+ * @params {dom}dom - 元素结点 {string}prop - css属性
+ **/
+exports.getStyle = function(dom, prop) {
+	var style = dom.currentStyle || window.getComputedStyle(dom, '');
+	if (dom.style.filter) {
+		return dom.style.filter.match(/\d+/g)[0];
+	}
+	return style[prop];
 }
+/**
+ * setStyle
+ * 改变CSS样式
+ * @params {dom} dom - 元素结点 {string} prop - 结点css属性名 {string} - val 属性对应值 
+ * @params {dom} dom - 元素结点 {object} prop - 需要改变属性对象 
+ **/
+exports.setStyle = function(dom, props, val){
+	if (typeof props == "string" && typeof val != "undefined"){
+		var prop = props;
+		props = {};
+		props[prop] = val;
+	}
+	for (var prop in props) {
+		switch (prop) {
+		case 'opacity':
+			if(!!exports.isMobile.any && /MSIE ([^;]+)/.test(navigator.userAgent)){
+				obj.style.filter = 'alpha(' + prop + '=' + props[prop] + ')'        
+			}else{
+				obj.style[prop] = props[prop];
+			}
+			break;
+		default:
+			obj.style[prop] = props[prop] + 'px';
+			break;
+		}
+	}
+}
+
 //页面高度
 exports.getbodyCH = function(){
 	var bh=document.body.clientHeight,
